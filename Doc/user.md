@@ -98,6 +98,7 @@ newPassword|json|**string** |新密码
 ## ***Account类***
 字段|类型|描述
 -|
+id|**int** |用户id
 username|**String** |用户名
 token|**string** |验证用的token
 expire|**long** |剩余多久过期

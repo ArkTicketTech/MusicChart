@@ -3,6 +3,8 @@
 
 目录:
 0. [user模块](user.md.html)
+0. [music模块](music.md.html)
+0. [setlist模块](setlist.md.html)
 
 ---
 
