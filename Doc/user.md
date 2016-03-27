@@ -80,7 +80,7 @@ newPassword|json|**string** |新密码
 
 返回码
 
-返回码|描述
+返回码|描述返回数据: 无
 -|
 [200](index.md.html#200)|OK
 [400](index.md.html#400)|缺少参数或参数错误
