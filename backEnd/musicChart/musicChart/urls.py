@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from users.views import Signup,Signin,Reset
+from musics.views import Musics
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/signup', Signup.as_view()),
     url(r'^users/signin', Signin.as_view()),
     url(r'^users/resetpassword', Reset.as_view()),
+    url(r'^musics', Musics.as_view()),
 ]
