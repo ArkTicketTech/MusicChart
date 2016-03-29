@@ -53,6 +53,7 @@ class Musics(APIView):
         for music in musics:
             result = {'id':music.id, 'name':music.name, 'language':music.language,
                     'style':music.style, 'theme':music.theme, 'collects':music.collects,
+                    'album':music.album, 'singer':music.singer,
                     'comments':music.comments, 'time':music.time}
             results.append(result)
         response = Response(results)

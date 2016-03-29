@@ -45,6 +45,8 @@ name|**string** |音乐名字
 language|**string** |语种
 style|**string** |风格
 theme|**string** |主题
+album|**string** |专辑
+singer|**string** |歌手
 collects|**int** |收藏数
 comments|**int** |评论数
 

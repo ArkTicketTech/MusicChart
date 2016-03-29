@@ -14,6 +14,8 @@ class Music(models.Model):
     collects = models.IntegerField(default=0)
     comments = models.IntegerField(default=0)
     time = models.BigIntegerField(default=0)
+    album = models.CharField(max_length=100, default="")
+    singer = models.CharField(max_length=100, default="")
 
     class Meta:
         ordering = ('name',)
