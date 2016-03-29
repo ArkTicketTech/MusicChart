@@ -18,10 +18,10 @@
 -|-|-|-
 token|header|**string** |用户token
 page|query|**int** |默认为0(可选)
-language|json|**string** |语种(可选)
-style|json|**string** |风格(可选)
-theme|json|**string** |主题(可选)
-order|json|**int** |推荐为1 最新为0 默认为0(可选)
+language|query|**string** |语种(可选)
+style|query|**string** |风格(可选)
+theme|query|**string** |主题(可选)
+order|query|**int** |推荐为1 最新为0 默认为0(可选)
 
 返回码
 

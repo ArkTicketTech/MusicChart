@@ -29,22 +29,22 @@ class Musics(APIView):
         startpage = page*10
         queryObj = Q()
         try:
-            language = str(request.data['language'])
+            language = str(request.GET['language'])
             queryObj = queryObj & Q(language=language)
         except:
             pass
         try:
-            style = request.data['style']
+            style = request.GET['style']
             queryObj = queryObj & Q(style=style)
         except:
             pass
         try:
-            theme = request.data['theme']
+            theme = request.GET['theme']
             queryObj = queryObj & Q(theme=theme)
         except:
             pass
         try:
-            order = request.data['order']
+            order = request.GET['order']
         except:
             order = 0
         orderItem = ('time' if (order==0) else 'collects')
