@@ -20,40 +20,32 @@ from django.db.models import Q
 from musics.models import Music
 from utils.views import get_music
 
-# GET /musics
-# 筛选音乐列表
+# GET /search
+# 搜索音乐
 @authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
 @permission_classes((IsAuthenticated,))
-class Musics(APIView):
+class Search(APIView):
 
     def get(self, request, format=None):
         try:
-            page = int(self.request.GET['page'])
+            page = request.GET['page']
+            startpage = page*10
         except:
-            page = 0
-        startpage = page*10
-        queryObj = Q()
+            return HttpResponse(status=400)
         try:
-            language = str(request.GET['language'])
-            queryObj = queryObj & Q(language=language)
+            key = request.GET['key']
         except:
-            pass
-        try:
-            style = request.GET['style']
-            queryObj = queryObj & Q(style=style)
-        except:
-            pass
-        try:
-            theme = request.GET['theme']
-            queryObj = queryObj & Q(theme=theme)
-        except:
-            pass
-        try:
-            order = request.GET['order']
-        except:
-            order = 0
-        orderItem = ('time' if (order==0) else 'collects')
-        musics = Music.objects.filter(queryObj).order_by(orderItem)[startpage:10]
+            return HttpResponse(status=400)
+        Q1 = Q(name=key)
+        Q2 = Q(album=key)
+        Q3 = Q(singer=key)
+        Q4 = Q(name__icontains=key)
+        Q5 = Q(album__icontains=key)
+        Q6 = Q(singer__icontains=key)
+        musics1 = Music.objects.filter(Q1).order_by('-time')
+        musics2 = Music.objects.filter(Q2 | Q3 & (~Q1)).order_by('-time')
+        musics3 = Music.objects.filter(Q4 | Q5 | Q6 & ~(Q2 | Q3 & (~Q1))).order_by('-time')
+        musics = musics1 | musics2 | musics3
         results = []
         for music in musics:
             result = get_music(music.id)

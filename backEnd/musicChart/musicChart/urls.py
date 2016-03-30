@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from users.views import Signup,Signin,Reset
 from musics.views import Musics
+from search.views import Search
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,4 +25,5 @@ urlpatterns = [
     url(r'^users/signin', Signin.as_view()),
     url(r'^users/resetpassword', Reset.as_view()),
     url(r'^musics', Musics.as_view()),
+    url(r'^search', Search.as_view()),
 ]

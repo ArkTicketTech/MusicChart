@@ -16,6 +16,8 @@ class Music(models.Model):
     time = models.BigIntegerField(default=0)
     album = models.CharField(max_length=100, default="")
     singer = models.CharField(max_length=100, default="")
+    photoUrl = models.CharField(max_length=100,blank=True)
+    mediaUrl = models.CharField(max_length=100,blank=True)
 
     class Meta:
         ordering = ('name',)

@@ -25,7 +25,7 @@ SECRET_KEY = 'eb0)4w#if-y0e4+u0ip7i#4*lgnbjf4px4ggz-8j=k9@73#4pq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'users',
     'musics',
     'setlists',
+    'utils',
+    'search',
     'rest_framework',
     'rest_framework.authtoken',
 ]

@@ -2,7 +2,7 @@
 <html>
   <head>
       <meta charset="utf-8" />
-      <title>music</title>
+      <title>search</title>
       <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); overflow: auto; background-color: rgb(40, 44, 52); }
 .markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
 .markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
@@ -461,17 +461,16 @@ pre.editor-colors .fold-marker:after,
 }
 </style>
   </head>
-  <body class='markdown-preview'><h2 id="-">音乐模块</h2>
-<p>/musics</p>
+  <body class='markdown-preview'><h2 id="-">搜索模块</h2>
+<p>/search</p>
 <ul>
-<li><a href="#musics_get">获取音乐列表</a></li>
+<li><a href="#search_get">按照关键字搜索</a></li>
 </ul>
-<p><a href="index.md.html">返回索引页</a></p>
-<p><a id="musics_get"></a></p>
+<p><a id="search_get"></a></p>
 <hr>
-<h3 id="-">获取音乐列表</h3>
+<h3 id="-">按照关键字搜索</h3>
 <blockquote>
-<p>GET: /musics</p>
+<p>GET: /search</p>
 </blockquote>
 <p>参数</p>
 <table>
@@ -497,28 +496,10 @@ pre.editor-colors .fold-marker:after,
 <td>默认为0(可选)</td>
 </tr>
 <tr>
-<td>language</td>
+<td>key</td>
 <td>query</td>
 <td><strong>string</strong></td>
-<td>语种(可选)</td>
-</tr>
-<tr>
-<td>style</td>
-<td>query</td>
-<td><strong>string</strong></td>
-<td>风格(可选)</td>
-</tr>
-<tr>
-<td>theme</td>
-<td>query</td>
-<td><strong>string</strong></td>
-<td>主题(可选)</td>
-</tr>
-<tr>
-<td>order</td>
-<td>query</td>
-<td><strong>int</strong></td>
-<td>推荐为1 最新为0 默认为0(可选)</td>
+<td>关键字(必选)</td>
 </tr>
 </tbody>
 </table>
@@ -545,75 +526,6 @@ pre.editor-colors .fold-marker:after,
 </tr>
 </tbody>
 </table>
-<p>返回数据: <a href="#class_music"><strong><em>Music类</em></strong></a></p>
-<p><a id="class_music"></a></p>
-<hr>
-<h2 id="-music-"><strong><em>Music类</em></strong></h2>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td><strong>int</strong></td>
-<td>音乐id</td>
-</tr>
-<tr>
-<td>name</td>
-<td><strong>string</strong></td>
-<td>音乐名字</td>
-</tr>
-<tr>
-<td>language</td>
-<td><strong>string</strong></td>
-<td>语种</td>
-</tr>
-<tr>
-<td>style</td>
-<td><strong>string</strong></td>
-<td>风格</td>
-</tr>
-<tr>
-<td>theme</td>
-<td><strong>string</strong></td>
-<td>主题</td>
-</tr>
-<tr>
-<td>album</td>
-<td><strong>string</strong></td>
-<td>专辑</td>
-</tr>
-<tr>
-<td>singer</td>
-<td><strong>string</strong></td>
-<td>歌手</td>
-</tr>
-<tr>
-<td>photoUrl</td>
-<td><strong>string</strong></td>
-<td>音乐图片地址</td>
-</tr>
-<tr>
-<td>mediaUrl</td>
-<td><strong>string</strong></td>
-<td>音乐地址</td>
-</tr>
-<tr>
-<td>collects</td>
-<td><strong>int</strong></td>
-<td>收藏数</td>
-</tr>
-<tr>
-<td>comments</td>
-<td><strong>int</strong></td>
-<td>评论数</td>
-</tr>
-</tbody>
-</table>
-<p><a href="#">返回顶部</a></p></body>
+<p>返回数据: <a href="music.md.html#class_music"><strong><em>Music类</em></strong></a></p>
+<p><a id="class_music"></a></p></body>
 </html>

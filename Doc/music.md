@@ -47,6 +47,8 @@ style|**string** |风格
 theme|**string** |主题
 album|**string** |专辑
 singer|**string** |歌手
+photoUrl|**string** |音乐图片地址
+mediaUrl|**string** |音乐地址
 collects|**int** |收藏数
 comments|**int** |评论数
 
