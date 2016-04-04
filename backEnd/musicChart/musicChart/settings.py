@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'search',
     'comments',
     'collects',
+    'tags',
     'rest_framework',
     'rest_framework.authtoken',
 ]

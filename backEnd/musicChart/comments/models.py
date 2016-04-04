@@ -1,6 +1,4 @@
 # -*- coding: utf-8
-# python
-import json
 # django
 from django.db import models
 

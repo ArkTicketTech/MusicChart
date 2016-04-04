@@ -54,11 +54,9 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'username'
 
     def get_full_name(self):
-        # The user is identified by their mobile
         return self.username
 
     def get_short_name(self):
-        # The user is identified by their mobile
         return self.username
 
     def __unicode__(self):
