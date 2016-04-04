@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'setlists',
     'utils',
     'search',
+    'comments',
+    'collects',
     'rest_framework',
     'rest_framework.authtoken',
 ]

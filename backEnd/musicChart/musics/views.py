@@ -31,6 +31,7 @@ class Musics(APIView):
             page = int(self.request.GET['page'])
         except:
             page = 0
+        userId = self.request.user.id
         startpage = page*10
         queryObj = Q()
         try:
@@ -56,7 +57,7 @@ class Musics(APIView):
         musics = Music.objects.filter(queryObj).order_by(orderItem)[startpage:10]
         results = []
         for music in musics:
-            result = get_music(music.id)
+            result = get_music(userId,music.id)
             results.append(result)
         response = Response(results)
         response["X-Total-Count"] = musics.count()

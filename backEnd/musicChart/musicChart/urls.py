@@ -18,6 +18,8 @@ from django.contrib import admin
 from users.views import Signup,Signin,Reset
 from musics.views import Musics
 from search.views import Search
+from comments.views import CommentMusic
+from collects.views import CollectMusic
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,4 +28,6 @@ urlpatterns = [
     url(r'^users/resetpassword', Reset.as_view()),
     url(r'^musics', Musics.as_view()),
     url(r'^search', Search.as_view()),
+    url(r'^comments/(?P<musicId>[0-9]+)$', CommentMusic.as_view()),
+    url(r'^collects/(?P<musicId>[0-9]+)$', CollectMusic.as_view()),
 ]

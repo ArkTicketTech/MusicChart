@@ -5,6 +5,9 @@
 
 [返回索引页](index.md.html)
 
+类:
+- [***Music类***](#class_music)
+
 <a id="musics_get"></a>
 
 ---
@@ -31,7 +34,7 @@ order|query|**int** |推荐为1 最新为0 默认为0(可选)
 [400](index.md.html#400)|参数错误
 [401](index.md.html#401)|未登录
 
-返回数据: [***Music类***](#class_music)
+返回数据: array([***Music类***](#class_music))
 
 <a id="class_music"></a>
 
@@ -51,5 +54,6 @@ photoUrl|**string** |音乐图片地址
 mediaUrl|**string** |音乐地址
 collects|**int** |收藏数
 comments|**int** |评论数
+isCollected|**int** |0表示未收藏，1表示已收藏
 
 [返回顶部](#)
