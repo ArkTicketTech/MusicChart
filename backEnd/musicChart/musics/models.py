@@ -13,7 +13,7 @@ class Music(models.Model):
     theme = models.CharField(max_length=100, default="")
     collects = models.IntegerField(default=0)
     comments = models.IntegerField(default=0)
-    time = models.BigIntegerField(default=0)
+    time = models.DateTimeField(default=0)
     album = models.CharField(max_length=100, default="")
     singer = models.CharField(max_length=100, default="")
     photoUrl = models.CharField(max_length=100,blank=True)

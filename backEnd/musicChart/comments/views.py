@@ -65,7 +65,6 @@ class CommentMusic(APIView):
         except:
             return HttpResponse(status=400)
         now = datetime.datetime.now()
-        timestamp = time.mktime(now.timetuple())
-        c = Comment.objects.create(user_id=userId,music_id=musicId,comment=comment,time=timestamp)
+        c = Comment.objects.create(user_id=userId,music_id=musicId,comment=comment,time=now)
         results = get_comment(musicId,0)
         return Response(results)
