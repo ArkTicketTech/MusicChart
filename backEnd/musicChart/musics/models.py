@@ -15,8 +15,8 @@ class Music(models.Model):
     time = models.DateTimeField(default=0)
     album = models.CharField(max_length=100, default="")
     singer = models.CharField(max_length=100, default="")
-    photoUrl = models.CharField(max_length=100,blank=True)
-    mediaUrl = models.CharField(max_length=100,blank=True)
+    photoUrl = models.ImageField(upload_to='photos/%Y/%m/%d')
+    mediaUrl = models.FileField(upload_to='musics/%Y/%m/%d')
 
     class Meta:
         ordering = ('name',)

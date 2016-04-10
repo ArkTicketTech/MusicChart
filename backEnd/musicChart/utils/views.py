@@ -12,8 +12,8 @@ def get_music(userId,musicId):
         isCollected = 0
     result = {'id':music.id, 'name':music.name, 'language':music.language.name,
             'style':music.style.name, 'theme':music.theme.name, 'collects':music.collects,
-            'album':music.album, 'singer':music.singer, 'photoUrl':music.photoUrl,
-            'mediaUrl':music.mediaUrl, 'comments':music.comments, 'time':music.time,
+            'album':music.album, 'singer':music.singer, 'photoUrl':music.photoUrl.url,
+            'mediaUrl':music.mediaUrl.url, 'comments':music.comments, 'time':music.time,
             'isCollected':isCollected}
     return result
 
