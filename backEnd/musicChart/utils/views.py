@@ -2,6 +2,7 @@
 from musics.models import Music
 from collects.models import Collect
 from comments.models import Comment
+from setlists.models import Setlist,SetlistMusic
 
 
 def get_music(userId,musicId):
@@ -26,3 +27,15 @@ def get_comment(musicId,page):
         r = {'id':c.id, 'musicId':c.music_id, 'userId':c.user_id, 'time':c.time, 'comment':c.comment}
         results.append(r)
     return results
+
+
+def get_setlist(setlistId):
+    setlist = Setlist.objects.get(id=setlistId)
+    musics = SetlistMusic.objects.filter(setlist=setlist.id)
+    result_musics = []
+    for music in musics:
+        result_musics.append(get_music(0,music.id))
+    result = {'id':setlist.id, 'description':setlist.description, 'musics':result_musics,
+                'time':setlist.time, 'photoUrl':setlist.photoUrl, 'listType',setlist.list_type,
+                'singer':setlist.singer}
+    return result
