@@ -17,10 +17,38 @@ from rest_framework import generics
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 # django
 from django.http import HttpResponse, HttpResponse
+from django.db.models import Q
 # app
 from musics.models import Music
 from setlists.models import Setlist
 from utils.views import get_setlist
+
+
+# GET /setlists
+# 获取歌单列表
+@authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
+@permission_classes((IsAuthenticated,))
+class SetlistList(APIView):
+
+    def get(self,request,**kwargs):
+        try:
+            page = int(self.request.GET['page'])
+        except:
+            page = 0
+        userId = self.request.user.id
+        startpage = page*10
+        try:
+            order = request.GET['order']
+        except:
+            order = 0
+        orderItem = ('time' if (order==0) else 'collects')
+        setlists = Setlist.objects.all().order_by(orderItem)[startpage:10]
+        results = []
+        for setlist in setlists:
+            results.append(get_setlist(setlist.id))
+        return Response(results)
+
+
 
 
 # GET /setlists/{setlistId}

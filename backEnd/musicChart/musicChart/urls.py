@@ -20,7 +20,7 @@ from musics.views import Musics
 from search.views import Search
 from comments.views import CommentMusic
 from collects.views import CollectMusic
-from setlists.views import SetlistOption
+from setlists.views import SetlistOption,SetlistList
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^search', Search.as_view()),
     url(r'^comments/(?P<musicId>[0-9]+)$', CommentMusic.as_view()),
     url(r'^collects/(?P<musicId>[0-9]+)$', CollectMusic.as_view()),
+    url(r'^setlists', SetlistList.as_view()),
     url(r'^setlists/(?P<setlistId>[0-9]+)$', SetlistOption.as_view()),
 ]
