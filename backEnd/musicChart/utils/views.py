@@ -36,6 +36,6 @@ def get_setlist(setlistId):
     for music in musics:
         result_musics.append(get_music(0,music.id))
     result = {'id':setlist.id, 'description':setlist.description, 'musics':result_musics,
-                'time':setlist.time, 'photoUrl':setlist.photoUrl, 'listType',setlist.list_type,
+                'time':setlist.time, 'photoUrl':setlist.photoUrl, 'listType':setlist.list_type,
                 'singer':setlist.singer}
     return result
