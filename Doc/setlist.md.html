@@ -2,7 +2,7 @@
 <html>
   <head>
       <meta charset="utf-8" />
-      <title>music</title>
+      <title>setlist</title>
       <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); overflow: auto; background-color: rgb(40, 44, 52); }
 .markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
 .markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
@@ -461,21 +461,24 @@ pre.editor-colors .fold-marker:after,
 }
 </style>
   </head>
-  <body class='markdown-preview'><h2 id="-">音乐模块</h2>
-<p>/musics</p>
+  <body class='markdown-preview'><h2 id="-">歌单模块</h2>
+<p>/setlists</p>
 <ul>
-<li><a href="#musics_get">获取音乐列表</a></li>
+<li><a href="#setlists_get">获取歌单列表</a></li>
 </ul>
-<p><a href="index.md.html">返回索引页</a></p>
+<p>/setlists/{setlistId}</p>
+<ul>
+<li><a href="#setlists_get_{setlistId}">获取某个歌单</a></li>
+</ul>
 <p>类:</p>
 <ul>
-<li><a href="#class_music"><strong><em>Music类</em></strong></a></li>
+<li><a href="#class_setlist"><strong><em>Setlist类</em></strong></a></li>
 </ul>
-<p><a id="musics_get"></a></p>
+<p><a id="setlists_get"></a></p>
 <hr>
-<h3 id="-">获取音乐列表</h3>
+<h3 id="-">获取歌单列表</h3>
 <blockquote>
-<p>GET: /musics</p>
+<p>GET: /setlists</p>
 </blockquote>
 <p>参数</p>
 <table>
@@ -499,35 +502,6 @@ pre.editor-colors .fold-marker:after,
 <td>query</td>
 <td><strong>int</strong></td>
 <td>默认为0(可选)</td>
-</tr>
-<tr>
-<td>language</td>
-<td>query</td>
-<td><strong>string</strong></td>
-<td>语种(可选)</td>
-</tr>
-<tr>
-<td>style</td>
-<td>query</td>
-<td><strong>string</strong></td>
-<td>风格(可选)</td>
-</tr>
-<tr>
-<td>theme</td>
-<td>query</td>
-<td><strong>string</strong></td>
-<td>主题(可选)</td>
-</tr>
-<tr>
-<td>time</td>
-<td><strong>string</strong></td>
-<td>上传时间</td>
-</tr>
-<tr>
-<td>order</td>
-<td>query</td>
-<td><strong>int</strong></td>
-<td>推荐为1 最新为0 默认为0(可选)</td>
 </tr>
 </tbody>
 </table>
@@ -554,10 +528,63 @@ pre.editor-colors .fold-marker:after,
 </tr>
 </tbody>
 </table>
-<p>返回数据: array(<a href="#class_music"><strong><em>Music类</em></strong></a>)</p>
-<p><a id="class_music"></a></p>
+<p>返回数据: array(<a href="#class_setlist"><strong><em>Setlist类</em></strong></a>)</p>
+<p><a id="setlists_get_{setlistId}"></a></p>
 <hr>
-<h2 id="-music-"><strong><em>Music类</em></strong></h2>
+<h3 id="-">获取某个歌单</h3>
+<blockquote>
+<p>GET: /setlists/{setlistId}</p>
+</blockquote>
+<p>参数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td><strong>string</strong></td>
+<td>用户token</td>
+</tr>
+</tbody>
+</table>
+<p>返回码</p>
+<table>
+<thead>
+<tr>
+<th>返回码</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="index.md.html#200">200</a></td>
+<td>OK</td>
+</tr>
+<tr>
+<td><a href="index.md.html#400">400</a></td>
+<td>参数错误</td>
+</tr>
+<tr>
+<td><a href="index.md.html#401">401</a></td>
+<td>未登录</td>
+</tr>
+<tr>
+<td><a href="index.md.html#404">404</a></td>
+<td>未找到</td>
+</tr>
+</tbody>
+</table>
+<p>返回数据: <a href="#class_setlist"><strong><em>Setlist类</em></strong></a></p>
+<p><a id="class_setlist"></a></p>
+<hr>
+<h2 id="-setlist-"><strong><em>Setlist类</em></strong></h2>
 <table>
 <thead>
 <tr>
@@ -570,37 +597,12 @@ pre.editor-colors .fold-marker:after,
 <tr>
 <td>id</td>
 <td><strong>int</strong></td>
-<td>音乐id</td>
+<td>歌单id</td>
 </tr>
 <tr>
-<td>name</td>
+<td>description</td>
 <td><strong>string</strong></td>
-<td>音乐名字</td>
-</tr>
-<tr>
-<td>language</td>
-<td><strong>string</strong></td>
-<td>语种</td>
-</tr>
-<tr>
-<td>style</td>
-<td><strong>string</strong></td>
-<td>风格</td>
-</tr>
-<tr>
-<td>theme</td>
-<td><strong>string</strong></td>
-<td>主题</td>
-</tr>
-<tr>
-<td>album</td>
-<td><strong>string</strong></td>
-<td>专辑</td>
-</tr>
-<tr>
-<td>singer</td>
-<td><strong>string</strong></td>
-<td>歌手</td>
+<td>歌单简介</td>
 </tr>
 <tr>
 <td>photoUrl</td>
@@ -608,24 +610,34 @@ pre.editor-colors .fold-marker:after,
 <td>音乐图片地址</td>
 </tr>
 <tr>
-<td>mediaUrl</td>
+<td>musics</td>
 <td><strong>string</strong></td>
-<td>音乐地址</td>
+<td>音乐列表</td>
 </tr>
 <tr>
-<td>collects</td>
+<td>&lt;!-- collects</td>
 <td><strong>int</strong></td>
-<td>收藏数</td>
+<td>收藏数 --&gt;</td>
 </tr>
 <tr>
-<td>comments</td>
+<td>&lt;!-- comments</td>
 <td><strong>int</strong></td>
-<td>评论数</td>
+<td>评论数 --&gt;</td>
 </tr>
 <tr>
-<td>isCollected</td>
+<td>time</td>
+<td><strong>string</strong></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>listType</td>
 <td><strong>int</strong></td>
-<td>0表示未收藏，1表示已收藏</td>
+<td>0表示普通歌单，1表示专辑</td>
+</tr>
+<tr>
+<td>singer</td>
+<td><strong>string</strong></td>
+<td>歌手,list_type=1时有值</td>
 </tr>
 </tbody>
 </table>
