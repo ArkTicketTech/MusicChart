@@ -128,7 +128,7 @@ REST_FRAMEWORK = {
     'PAGINATE_BY': 10
 }
 
-MEDIA_ROOT = '/home/media'
+MEDIA_ROOT = 'media'
 
 
 
