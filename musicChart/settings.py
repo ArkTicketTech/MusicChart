@@ -129,7 +129,8 @@ REST_FRAMEWORK = {
 }
 
 MEDIA_ROOT = '/var/www/html/MusicChart/media'
-MEDIA_URL = 'http://media.example.com/'
+MEDIA_URL = 'http://115.28.94.65/media/'
+# MEDIA_URL = BASE_DIR+'/media/'
 
 
 
