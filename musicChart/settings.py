@@ -128,7 +128,7 @@ REST_FRAMEWORK = {
     'PAGINATE_BY': 10
 }
 
-MEDIA_ROOT = '/var/www/html/media'
+MEDIA_ROOT = '/var/www/html/MusicChart/media'
 
 
 
