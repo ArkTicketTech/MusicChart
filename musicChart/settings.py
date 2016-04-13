@@ -129,6 +129,7 @@ REST_FRAMEWORK = {
 }
 
 MEDIA_ROOT = '/var/www/html/MusicChart/media'
+MEDIA_URL = 'http://media.example.com/'
 
 
 
