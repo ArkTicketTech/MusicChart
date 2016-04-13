@@ -128,7 +128,7 @@ REST_FRAMEWORK = {
     'PAGINATE_BY': 10
 }
 
-MEDIA_ROOT = '/var/www/html/MusicChart/media'
+MEDIA_ROOT = '/var/www/html/media/'
 MEDIA_URL = 'http://115.28.94.65/media/'
 # MEDIA_URL = BASE_DIR+'/media/'
 
