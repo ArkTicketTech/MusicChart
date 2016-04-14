@@ -13,8 +13,7 @@ class Music(models.Model):
     collects = models.IntegerField(default=0)
     comments = models.IntegerField(default=0)
     time = models.DateTimeField(default=0)
-    album = models.CharField(max_length=100, default="")
-    singer = models.CharField(max_length=100, default="")
+    singer = models.CharField(max_length=100, default="", blank=True)
     photoUrl = models.ImageField(upload_to='photos/%Y/%m/%d')
     mediaUrl = models.FileField(upload_to='musics/%Y/%m/%d')
 

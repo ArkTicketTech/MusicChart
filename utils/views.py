@@ -11,9 +11,16 @@ def get_music(userId,musicId):
         isCollected = Collect.objects.get(user_id=userId, music_id=musicId).status
     except:
         isCollected = 0
+    try:
+        albumSet = Setlist.objects.raw('SELECT sl.id,sl.name FROM setlists_setlist sl \
+            inner join setlists_setlistmusic sm \
+            on sm.setlist_id=sl.id where sl.list_type=1')[0]
+        album = albumSet.name
+    except:
+        album = ''
     result = {'id':music.id, 'name':music.name, 'language':music.language.name,
             'style':music.style.name, 'theme':music.theme.name, 'collects':music.collects,
-            'album':music.album, 'singer':music.singer, 'photoUrl':music.photoUrl.url,
+            'album':album, 'singer':music.singer, 'photoUrl':music.photoUrl.url,
             'mediaUrl':music.mediaUrl.url, 'comments':music.comments, 'time':music.time,
             'isCollected':isCollected}
     return result
