@@ -2,7 +2,7 @@
 from musics.models import Music
 from collects.models import Collect
 from comments.models import Comment
-from setlists.models import Setlist,SetlistMusic
+from setlists.models import Setlist
 
 
 def get_music(userId,musicId):
@@ -13,7 +13,7 @@ def get_music(userId,musicId):
         isCollected = 0
     try:
         albumSet = Setlist.objects.raw('SELECT sl.id,sl.name FROM setlists_setlist sl \
-            inner join setlists_setlistmusic sm \
+            inner join setlists_setlist_musics sm \
             on sm.setlist_id=sl.id where sl.list_type=1')[0]
         album = albumSet.name
     except:
@@ -38,7 +38,7 @@ def get_comment(musicId,page):
 
 def get_setlist(setlistId):
     setlist = Setlist.objects.get(id=setlistId)
-    setlistmusics = SetlistMusic.objects.filter(setlist=setlist)
+    setlistmusics = Setlist.objects.raw('SELECT * FROM setlists_setlist_musics where setlist_id=%s',[setlistId])
     result_musics = []
     for setlistmusic in setlistmusics:
         result_musics.append(get_music(0,setlistmusic.music_id))
