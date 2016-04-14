@@ -42,12 +42,36 @@ class SetlistList(APIView):
         except:
             order = 0
         orderItem = ('time' if (order==0) else 'collects')
-        setlists = Setlist.objects.all().order_by(orderItem)[startpage:10]
+        setlists = Setlist.objects.filter(list_type=0).order_by(orderItem)[startpage:10]
         results = []
         for setlist in setlists:
             results.append(get_setlist(setlist.id))
         return Response(results)
 
+
+# GET /albums
+# 获取歌单列表
+@authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
+@permission_classes((IsAuthenticated,))
+class AlbumList(APIView):
+
+    def get(self,request,**kwargs):
+        try:
+            page = int(self.request.GET['page'])
+        except:
+            page = 0
+        userId = self.request.user.id
+        startpage = page*10
+        try:
+            order = request.GET['order']
+        except:
+            order = 0
+        orderItem = ('time' if (order==0) else 'collects')
+        setlists = Setlist.objects.filter(list_type=1).order_by(orderItem)[startpage:10]
+        results = []
+        for setlist in setlists:
+            results.append(get_setlist(setlist.id))
+        return Response(results)
 
 
 
