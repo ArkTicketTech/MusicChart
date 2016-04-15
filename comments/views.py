@@ -20,12 +20,13 @@ from django.http import HttpResponse, HttpResponse
 # app
 from comments.models import Comment
 from musics.models import Music
+from setlists.models import Setlist
 from utils.views import get_comment
 
 
-# GET /comments/{musicId}
+# GET /musics/comments/{musicId}
 # 获取某音乐的评论
-# POST /comments/{musicId}
+# POST /musics/comments/{musicId}
 # 评论音乐
 @authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
 @permission_classes((IsAuthenticated,))
@@ -45,7 +46,7 @@ class CommentMusic(APIView):
         except:
             return HttpResponse(status=404)
         try:
-            results = get_comment(musicId,page)
+            results = get_comment(musicId,0,page)
         except:
             return HttpResponse(status=404)
         return Response(results)
@@ -66,5 +67,52 @@ class CommentMusic(APIView):
             return HttpResponse(status=400)
         now = datetime.datetime.now()
         c = Comment.objects.create(user_id=userId,music_id=musicId,comment=comment,time=now)
-        results = get_comment(musicId,0)
+        results = get_comment(musicId,0,0)
+        return Response(results)
+
+
+# GET /setlists/comments/{setlistId}
+# 获取某歌单的评论
+# POST /setlists/comments/{setlistId}
+# 评论歌单
+@authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
+@permission_classes((IsAuthenticated,))
+class CommentSetlist(APIView):
+
+    def get(self,request,**kwargs):
+        try:
+            setlistId = int(self.kwargs['setlistId'])
+        except:
+            return HttpResponse(status=400)
+        try:
+            page = int(self.request.GET['page'])
+        except:
+            page = 0
+        try:
+            Setlist.objects.get(id=setlistId)
+        except:
+            return HttpResponse(status=404)
+        try:
+            results = get_comment(0,setlistId,page)
+        except:
+            return HttpResponse(status=404)
+        return Response(results)
+
+    def post(self,request,**kwargs):
+        try:
+            setlistId = int(self.kwargs['setlistId'])
+        except:
+            return HttpResponse(status=400)
+        userId = self.request.user.id
+        try:
+            Setlist.objects.get(id=setlistId)
+        except:
+            return HttpResponse(status=404)
+        try:
+            comment = request.data['comment']
+        except:
+            return HttpResponse(status=400)
+        now = datetime.datetime.now()
+        c = Comment.objects.create(user_id=userId,setlist_id=setlistId,comment=comment,time=now)
+        results = get_comment(0,setlistId,0)
         return Response(results)
