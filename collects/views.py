@@ -18,9 +18,10 @@ from django.http import HttpResponse, HttpResponse
 # app
 from collects.models import Collect
 from musics.models import Music
+from setlists.models import Setlist
 
 
-# PUT /collects/{musicId}
+# PUT /musics/collects/{musicId}
 # 收藏/取消收藏音乐
 @authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
 @permission_classes((IsAuthenticated,))
@@ -45,4 +46,33 @@ class CollectMusic(APIView):
             collect.save()
         except:
             Collect.objects.create(user_id=userId,music_id=musicId,status=1)
+        return HttpResponse(status=200)
+
+
+
+# PUT /setlists/collects/{setlistId}
+# 收藏/取消收藏歌单
+@authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
+@permission_classes((IsAuthenticated,))
+class CollectSetlist(APIView):
+
+    def put(self,request,**kwargs):
+        try:
+            setlistId = int(self.kwargs['setlistId'])
+        except:
+            return HttpResponse(status=400)
+        try:
+            Setlist.objects.get(id=setlistId)
+        except:
+            return HttpResponse(status=404)
+        userId = self.request.user.id
+        try:
+            collect = Collect.objects.get(user_id=userId,setlist_id=setlistId)
+            if collect.status == 0:
+                collect.status = 1
+            else:
+                collect.status = 0
+            collect.save()
+        except:
+            Collect.objects.create(user_id=userId,setlist_id=setlistId,status=1)
         return HttpResponse(status=200)

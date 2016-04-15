@@ -46,6 +46,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     username = models.CharField(max_length=100,  unique=True, default="")
+    photoUrl = models.ImageField(default='heads/default.jpg',upload_to='heads/%Y/%m/%d')
     # password = models.CharField(max_length=100, default="")
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

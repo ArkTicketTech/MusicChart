@@ -26,12 +26,12 @@ def get_music(userId,musicId):
     return result
 
 
-def get_comment(musicId,page):
+def get_comment(musicId,setlistId,page):
     startpage = page*20
-    comments = Comment.objects.filter(music_id=musicId).order_by('-time')[startpage:20]
+    comments = Comment.objects.filter(music_id=musicId,setlist_id=setlistId).order_by('-time')[startpage:20]
     results = []
     for c in comments:
-        r = {'id':c.id, 'musicId':c.music_id, 'userId':c.user_id, 'time':c.time, 'comment':c.comment}
+        r = {'id':c.id, 'musicId':c.music_id, 'setlistId':c.setlist_id, 'userId':c.user_id, 'time':c.time, 'comment':c.comment}
         results.append(r)
     return results
 
