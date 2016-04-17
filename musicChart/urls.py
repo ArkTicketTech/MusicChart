@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from users.views import Signup,Signin,Reset
-from musics.views import Musics
+from musics.views import Musics,MusicOption
 from search.views import Search
 from comments.views import CommentMusic,CommentSetlist
 from collects.views import CollectMusic,CollectSetlist
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^users/signup', Signup.as_view()),
     url(r'^users/signin', Signin.as_view()),
     url(r'^users/resetpassword', Reset.as_view()),
+    url(r'^musics/(?P<musicId>[0-9]+)$', MusicOption.as_view()),
     url(r'^musics$', Musics.as_view()),
     url(r'^search$', Search.as_view()),
     url(r'^musics/comments/(?P<musicId>[0-9]+)$', CommentMusic.as_view()),
