@@ -26,8 +26,6 @@ from utils.views import get_setlist
 
 # GET /setlists
 # 获取歌单列表
-@authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
-@permission_classes((IsAuthenticated,))
 class SetlistList(APIView):
 
     def get(self,request,**kwargs):
@@ -35,7 +33,10 @@ class SetlistList(APIView):
             page = int(self.request.GET['page'])
         except:
             page = 0
-        userId = self.request.user.id
+        try:
+            userId = self.request.user.id
+        except:
+            userId = 0
         startpage = page*10
         try:
             order = request.GET['order']
@@ -51,8 +52,6 @@ class SetlistList(APIView):
 
 # GET /albums
 # 获取歌单列表
-@authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
-@permission_classes((IsAuthenticated,))
 class AlbumList(APIView):
 
     def get(self,request,**kwargs):
@@ -60,7 +59,10 @@ class AlbumList(APIView):
             page = int(self.request.GET['page'])
         except:
             page = 0
-        userId = self.request.user.id
+        try:
+            userId = self.request.user.id
+        except:
+            userId = 0
         startpage = page*10
         try:
             order = request.GET['order']
@@ -77,8 +79,6 @@ class AlbumList(APIView):
 
 # GET /setlists/{setlistId}
 # 获取某个歌单
-@authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
-@permission_classes((IsAuthenticated,))
 class SetlistOption(APIView):
 
     def get(self,request,**kwargs):

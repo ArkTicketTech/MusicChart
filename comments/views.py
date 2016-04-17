@@ -28,8 +28,6 @@ from utils.views import get_comment
 # 获取某音乐的评论
 # POST /musics/comments/{musicId}
 # 评论音乐
-@authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
-@permission_classes((IsAuthenticated,))
 class CommentMusic(APIView):
 
     def get(self,request,**kwargs):
@@ -51,6 +49,8 @@ class CommentMusic(APIView):
             return HttpResponse(status=404)
         return Response(results)
 
+    @authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
+    @permission_classes((IsAuthenticated,))
     def post(self,request,**kwargs):
         try:
             musicId = int(self.kwargs['musicId'])

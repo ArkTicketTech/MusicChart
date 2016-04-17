@@ -22,8 +22,6 @@ from utils.views import get_music
 
 # GET /search
 # 搜索音乐
-@authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
-@permission_classes((IsAuthenticated,))
 class Search(APIView):
 
     def get(self, request, format=None):
