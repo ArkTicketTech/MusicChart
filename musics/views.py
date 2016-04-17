@@ -22,8 +22,6 @@ from utils.views import get_music
 
 # GET /musics
 # 筛选音乐列表
-@authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
-@permission_classes((IsAuthenticated,))
 class Musics(APIView):
 
     def get(self, request, format=None):
@@ -31,8 +29,11 @@ class Musics(APIView):
             page = int(self.request.GET['page'])
         except:
             page = 0
-        userId = self.request.user.id
         startpage = page*10
+        try:
+            userId = self.request.user.id
+        except:
+            userId = 0
         queryObj = Q()
         try:
             language = str(request.GET['language'])
@@ -123,3 +124,23 @@ class Musics(APIView):
 #         response["X-Total-Count"] = musics.count()
 #         response["Access-Control-Expose-Headers"] = "X-Total-Count"
 #         return response
+
+# GET musics/{musicId}
+class MusicOption(APIView):
+
+    def get(self, request, format=None):
+        try:
+            musicId = int(self.kwargs['musicId'])
+        except:
+            return HttpResponse(status=400)
+        try:
+            Music.objects.get(id=musicId)
+        except:
+            return HttpResponse(status=404)
+        try:
+            userId = self.request.user.id
+        except:
+            userId = 0
+        result = get_music(userId,music.id)
+        response = Response(result)
+        return response
