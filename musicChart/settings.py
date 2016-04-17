@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'search',
     'comments',
     'collects',
+    'corsheaders',
     'tags',
     'rest_framework',
     'rest_framework.authtoken',
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -131,6 +133,8 @@ REST_FRAMEWORK = {
 MEDIA_ROOT = '/var/www/html/media/'
 MEDIA_URL = 'http://115.28.94.65/media/'
 # MEDIA_URL = BASE_DIR+'/media/'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 
