@@ -75,8 +75,6 @@ class CommentMusic(APIView):
 # 获取某歌单的评论
 # POST /setlists/comments/{setlistId}
 # 评论歌单
-@authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
-@permission_classes((IsAuthenticated,))
 class CommentSetlist(APIView):
 
     def get(self,request,**kwargs):
@@ -98,6 +96,8 @@ class CommentSetlist(APIView):
             return HttpResponse(status=404)
         return Response(results)
 
+    @authentication_classes((TokenAuthentication,SessionAuthentication, BasicAuthentication))
+    @permission_classes((IsAuthenticated,))
     def post(self,request,**kwargs):
         try:
             setlistId = int(self.kwargs['setlistId'])
