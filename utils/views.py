@@ -3,6 +3,7 @@ from musics.models import Music
 from collects.models import Collect
 from comments.models import Comment
 from setlists.models import Setlist
+from users.models import User
 
 
 def get_music(userId,musicId):
@@ -31,7 +32,12 @@ def get_comment(musicId,setlistId,page):
     comments = Comment.objects.filter(music_id=musicId,setlist_id=setlistId).order_by('-time')[startpage:20]
     results = []
     for c in comments:
-        r = {'id':c.id, 'musicId':c.music_id, 'setlistId':c.setlist_id, 'userId':c.user_id, 'time':c.time, 'comment':c.comment}
+        try:
+            user = User.objects.get(id=c.user_id)
+            user_class = {'id':user.id,'username':user.username,'photoUrl':user.photoUrl}
+        pass:
+            user_class = {'id':0,'username':;,'photoUrl':'heads/default.jpg'}
+        r = {'id':c.id, 'musicId':c.music_id, 'setlistId':c.setlist_id, 'user':user_class, 'time':c.time, 'comment':c.comment}
         results.append(r)
     return results
 
