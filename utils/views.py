@@ -35,8 +35,8 @@ def get_comment(musicId,setlistId,page):
         try:
             user = User.objects.get(id=c.user_id)
             user_class = {'id':user.id,'username':user.username,'photoUrl':user.photoUrl}
-        pass:
-            user_class = {'id':0,'username':;,'photoUrl':'heads/default.jpg'}
+        except:
+            user_class = {'id':0,'username':"",'photoUrl':'heads/default.jpg'}
         r = {'id':c.id, 'musicId':c.music_id, 'setlistId':c.setlist_id, 'user':user_class, 'time':c.time, 'comment':c.comment}
         results.append(r)
     return results
