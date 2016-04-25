@@ -54,7 +54,7 @@ class Musics(APIView):
             order = request.GET['order']
         except:
             order = 0
-        orderItem = ('time' if (order==0) else 'collects')
+        orderItem = ('-time' if (order==0) else '-collects')
         musics = Music.objects.filter(queryObj).order_by(orderItem)[startpage:10]
         results = []
         for music in musics:
