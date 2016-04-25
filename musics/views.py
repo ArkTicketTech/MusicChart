@@ -141,6 +141,6 @@ class MusicOption(APIView):
             userId = self.request.user.id
         except:
             userId = 0
-        result = get_music(userId,music.id)
+        result = get_music(userId,musicId)
         response = Response(result)
         return response
