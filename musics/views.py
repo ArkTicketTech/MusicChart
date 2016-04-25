@@ -128,7 +128,7 @@ class Musics(APIView):
 # GET musics/{musicId}
 class MusicOption(APIView):
 
-    def get(self, request, format=None):
+    def get(self,request,**kwargs):
         try:
             musicId = int(self.kwargs['musicId'])
         except:
