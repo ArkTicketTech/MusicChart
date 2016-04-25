@@ -42,7 +42,7 @@ class SetlistList(APIView):
             order = request.GET['order']
         except:
             order = 0
-        orderItem = ('time' if (order==0) else 'collects')
+        orderItem = ('-time' if (order==0) else '-collects')
         setlists = Setlist.objects.filter(list_type=0).order_by(orderItem)[startpage:10]
         results = []
         for setlist in setlists:
