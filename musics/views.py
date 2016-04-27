@@ -29,7 +29,7 @@ class Musics(APIView):
             page = int(self.request.GET['page'])
         except:
             page = 0
-        startpage = page*10
+        startpage = page*9
         try:
             userId = self.request.user.id
         except:
@@ -55,7 +55,7 @@ class Musics(APIView):
         except:
             order = 0
         orderItem = ('-time' if (order==0) else '-collects')
-        musics = Music.objects.filter(queryObj).order_by(orderItem)[startpage:10]
+        musics = Music.objects.filter(queryObj).order_by(orderItem)[startpage:9]
         results = []
         for music in musics:
             result = get_music(userId,music.id)
