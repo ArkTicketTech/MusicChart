@@ -8,8 +8,8 @@ from musics.models import Music
 class Setlist(models.Model):
     name = models.CharField(max_length=100, default="")
     description = models.CharField(max_length=250, default="")
-    # collects = models.IntegerField(default=0)
-    # comments = models.IntegerField(default=0)
+    collects = models.IntegerField(default=0)
+    comments = models.IntegerField(default=0)
     time = models.DateTimeField(default=0)
     photoUrl = models.ImageField(upload_to='photos/%Y/%m/%d')
     # 歌单类型0，为普通歌单，1为专辑
