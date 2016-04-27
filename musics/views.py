@@ -30,6 +30,7 @@ class Musics(APIView):
         except:
             page = 0
         startpage = page*9
+        endpage = startpage+9
         try:
             userId = self.request.user.id
         except:
@@ -55,13 +56,13 @@ class Musics(APIView):
         except:
             order = 0
         orderItem = ('-time' if (order==0) else '-collects')
-        musics = Music.objects.filter(queryObj).order_by(orderItem)[startpage:9]
+        musics = Music.objects.filter(queryObj).order_by(orderItem)[startpage:endpage]
         results = []
         for music in musics:
             result = get_music(userId,music.id)
             results.append(result)
         response = Response(results)
-        response["X-Total-Count"] = musics.count()
+        response["X-Total-Count"] = Music.objects.filter(queryObj).count
         response["Access-Control-Expose-Headers"] = "X-Total-Count"
         return response
 
