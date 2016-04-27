@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from users.views import Signup,Signin,Reset
 from musics.views import Musics,MusicOption
-from search.views import Search
+from search.views import Search,SearchSetlist
 from comments.views import CommentMusic,CommentSetlist
 from collects.views import CollectMusic,CollectSetlist
 from setlists.views import SetlistOption,SetlistList,AlbumList
@@ -29,7 +29,8 @@ urlpatterns = [
     url(r'^users/resetpassword', Reset.as_view()),
     url(r'^musics/(?P<musicId>[0-9]+)$', MusicOption.as_view()),
     url(r'^musics$', Musics.as_view()),
-    url(r'^search$', Search.as_view()),
+    url(r'^musics/search$', Search.as_view()),
+    url(r'^setlists/search$', SearchSetlist.as_view()),
     url(r'^musics/comments/(?P<musicId>[0-9]+)$', CommentMusic.as_view()),
     url(r'^setlists/comments/(?P<setlistId>[0-9]+)$', CommentSetlist.as_view()),
     url(r'^musics/collects/(?P<musicId>[0-9]+)$', CollectMusic.as_view()),
