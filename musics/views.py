@@ -62,7 +62,7 @@ class Musics(APIView):
             result = get_music(userId,music.id)
             results.append(result)
         response = Response(results)
-        response["X-Total-Count"] = Music.objects.filter(queryObj).count
+        response["X-Total-Count"] = Music.objects.filter(queryObj).count()
         response["Access-Control-Expose-Headers"] = "X-Total-Count"
         return response
 
