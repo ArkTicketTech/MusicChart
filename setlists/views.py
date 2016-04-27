@@ -38,12 +38,13 @@ class SetlistList(APIView):
         except:
             userId = 0
         startpage = page*10
+        endpage = startpage+10
         try:
             order = request.GET['order']
         except:
             order = 0
         orderItem = ('-time' if (order==0) else '-collects')
-        setlists = Setlist.objects.filter(list_type=0).order_by(orderItem)[startpage:10]
+        setlists = Setlist.objects.filter(list_type=0).order_by(orderItem)[startpage:endpage]
         results = []
         for setlist in setlists:
             results.append(get_setlist(setlist.id))
@@ -64,12 +65,13 @@ class AlbumList(APIView):
         except:
             userId = 0
         startpage = page*10
+        endpage = startpage+10
         try:
             order = request.GET['order']
         except:
             order = 0
         orderItem = ('-time' if (order==0) else '-collects')
-        setlists = Setlist.objects.filter(list_type=1).order_by(orderItem)[startpage:10]
+        setlists = Setlist.objects.filter(list_type=1).order_by(orderItem)[startpage:endpage]
         results = []
         for setlist in setlists:
             results.append(get_setlist(setlist.id))
