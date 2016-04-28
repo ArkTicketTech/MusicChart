@@ -15,8 +15,8 @@ def get_music(userId,musicId):
     try:
         albumSet = Setlist.objects.raw('SELECT sl.id,sl.name FROM setlists_setlist sl \
             inner join setlists_setlist_musics sm \
-            on sm.setlist_id=sl.id where sl.list_type=1')[0]
-        album = albumSet.name
+            on sm.setlist_id=sl.id and sl.list_type=1 and sm.music_id='+str(musicId))
+        album = albumSet[0].name
     except:
         album = ''
     result = {'id':music.id, 'name':music.name, 'language':music.language.name,
