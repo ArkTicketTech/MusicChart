@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'collects',
     'corsheaders',
     'tags',
+    'lrc',
     'rest_framework',
     'rest_framework.authtoken',
 ]

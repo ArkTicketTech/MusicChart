@@ -21,6 +21,7 @@ from search.views import Search,SearchSetlist
 from comments.views import CommentMusic,CommentSetlist
 from collects.views import CollectMusic,CollectSetlist
 from setlists.views import SetlistOption,SetlistList,AlbumList
+from lrc.views import LrcUpload
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -38,4 +39,5 @@ urlpatterns = [
     url(r'^setlists$', SetlistList.as_view()),
     url(r'^albums$', AlbumList.as_view()),
     url(r'^setlists/(?P<setlistId>[0-9]+)$', SetlistOption.as_view()),
+    url(r'^lrc', LrcUpload.as_view()),
 ]
