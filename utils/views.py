@@ -23,7 +23,7 @@ def get_music(userId,musicId):
             'style':music.style.name, 'theme':music.theme.name, 'collects':music.collects,
             'album':album, 'singer':music.singer, 'photoUrl':music.photoUrl.url,
             'mediaUrl':music.mediaUrl.url, 'comments':music.comments, 'time':music.time,
-            'isCollected':isCollected}
+            'isCollected':isCollected,'info':music.info}
     return result
 
 
@@ -51,5 +51,5 @@ def get_setlist(setlistId):
     result = {'id':setlist.id, 'description':setlist.description, 'musics':result_musics,
                 'time':setlist.time, 'photoUrl':setlist.photoUrl.url, 'listType':setlist.list_type,
                 'singer':setlist.singer, 'name':setlist.name, 'collects':setlist.collects,
-                'comments':setlist.comments}
+                'comments':setlist.comments,'info':setlist.info}
     return result
