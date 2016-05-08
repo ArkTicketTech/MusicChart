@@ -8,6 +8,7 @@ from musics.models import Music
 class Setlist(models.Model):
     name = models.CharField(max_length=100, default="")
     description = models.CharField(max_length=250, default="")
+    info = models.CharField(max_length=250, default="")
     collects = models.IntegerField(default=0)
     comments = models.IntegerField(default=0)
     time = models.DateTimeField(default=0)
